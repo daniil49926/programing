@@ -1,4 +1,4 @@
-﻿
+﻿#include<cmath>
 #include <iostream>
 using namespace std;
 
@@ -12,7 +12,8 @@ int main()
     cin >> v;
     cout << "t"<<endl;
     cin >> t;
-    double x = z + v * t - 1 / 2 * g * t * t;
-    cout <<"x(t)="<< x << endl;
+    double x = z + v * t - (g * t * t)/2;
+    double S = x - z;
+    cout <<"Расстояние = "<< abs(S) << endl;
 }
 // Для переменных данной формулы лучше использовать переменные типа double,тк в таких переменных может храниться дробное число. 

@@ -7,8 +7,8 @@ int main()
 {
     int a, b;
     cin >> a >> b;
-    int y = b, z = a;
-    cout << y <<" "<< z << endl;
+    swap(a, b);
+    cout << a <<" "<< b << endl;
 
     cin >> a >> b;
     a = a + b;
