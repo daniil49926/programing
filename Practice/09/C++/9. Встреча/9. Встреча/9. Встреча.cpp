@@ -1,47 +1,39 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
+#include <string>
+#include <math.h>
+int minutes_from_time(std::string);
 
-int main()
+int main() {
+    setlocale(LC_ALL, "ru");
+    std::string x1, x2;
+    std::cout << "Введите время прихода первого:" << std::endl;
+    std::cin >> x1;
+    std::cout << "Введите время прихода второго:" << std::endl;
+    std::cin >> x2;
+    std::cout << std::endl;
+
+    if (abs(minutes_from_time(x1) - minutes_from_time(x2)) < 15 &&
+            abs(minutes_from_time(x1) - minutes_from_time(x2)) > 1425 &&
+                2359 <= minutes_from_time(x1) >= 0 &&
+                    2359 <= minutes_from_time(x2) >= 0)
+                {
+                    std::cout << "Встреча состоится" << std::endl;
+                }
+    else if (2359 >= minutes_from_time(x1) <= 0 or
+                2359 >= minutes_from_time(x2) <= 0)
+               {
+                    std::cout << "Ошибка ввода" << std::endl;
+               }
+        else {
+            std::cout << "Встреча не состоится" << std::endl;
+             }
+    }
+
+int minutes_from_time(std::string time)
 {
-    int x,y,x1,y1;
-	char oper;
-    int h1[23];
-    int h2[23];
-    int m1[59];
-    int m2[59];
-	setlocale(LC_ALL, "Russian");
-    std::cout << "Введите время прихода первого" << std::endl;
-	while (true) {
-		std::cin >> x >> oper >> y;
-		if (std::cin.good()) {
-			std::cin.ignore(10, '\n');
-			break;
-		}
-		std::cin.clear();
-		std::cout << "Неправильный ввод" << std::endl;
-		std::cin.ignore(10, '\n');
-	}
-	if (h1[23] == x, oper == ':', m1[59] == y) {
-		std::cout << "Введите время прихода второго" << std::endl;
-		while (true) {
-			std::cin >> x1 >> oper >> y1;
-			if (std::cin.good()) {
-				std::cin.ignore(10, '\n');
-				break;
-			}
-			std::cin.clear();
-			std::cout << "Неправильный ввод" << std::endl;
-			std::cin.ignore(10, '\n');
-		}
-		if (h1[23] == x1, oper == ':', m1[59] == y1) {
-			if (y <= y1) {
-				std::cout << "встреча состоиться";
-			}
-			else {
-				std::cout << "встреча не состоиться";
-			}
-		}
-	}
+    size_t a;
 
+    double hours = stoi(time, &a);
+    double minutes = stoi(time.substr(a + 1));
+    return (hours * 60 + minutes);
 }
-

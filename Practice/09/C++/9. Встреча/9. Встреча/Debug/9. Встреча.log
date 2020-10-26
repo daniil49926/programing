@@ -1,4 +1,7 @@
 ﻿  9. Встреча.cpp
-C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\9. Встреча\9. Встреча.cpp(11,9): warning C4101: m2: неиспользованная локальная переменная
-C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\9. Встреча\9. Встреча.cpp(9,9): warning C4101: h2: неиспользованная локальная переменная
+C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\9. Встреча\9. Встреча.cpp(17,1): warning C4804: >=: небезопасное использование типа "bool" в операции
+C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\9. Встреча\9. Встреча.cpp(18,55): warning C4804: >=: небезопасное использование типа "bool" в операции
+C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\9. Встреча\9. Встреча.cpp(22,13): warning C4804: <=: небезопасное использование типа "bool" в операции
+C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\9. Встреча\9. Встреча.cpp(23,51): warning C4804: <=: небезопасное использование типа "bool" в операции
+C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\9. Встреча\9. Встреча.cpp(39,24): warning C4244: return: преобразование "double" в "int", возможна потеря данных
   9. Встреча.vcxproj -> C:\Users\Даниил\Desktop\programing\Practice\09\C++\9. Встреча\Debug\9. Встреча.exe
