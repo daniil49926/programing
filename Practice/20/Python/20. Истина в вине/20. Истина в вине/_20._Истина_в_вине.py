@@ -1,3 +1,4 @@
+
 money = int(input())
 quantity = int(input())
 flag = 1
