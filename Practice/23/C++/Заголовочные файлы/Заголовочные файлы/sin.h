@@ -1,20 +1,16 @@
-/*#ifndef sin
+#ifndef SIN_H
+#include "fact.h"
+#include <math.h>
+#define SIN_H
 
-#define sin
-#include"fact.h"
-#include<iostream>
+double sinx(double x, double k)
+{
+    int i = 0;
+    double rez = 0;
+    for ( i; i < k; i++)
+        rez = rez + pow(-1, i) * (pow(x, 2 * i + 1) 
+                     / (fact(2 * i + 1)));
+    return rez;
+}
 
-double sin(double i, int x) {
-	int i;
-	int x;
-	double res = 0;
-	for (int i = 0; i < k; i++) {
-		res += pow(-1, i) * (pow(x, (2 * i + 1)) / fact(2 * i + 1));
-	}
-	return res;
-
-
-
-#endif // !sin
-
-*/
+#endif

@@ -1,12 +1,11 @@
 #pragma once
-#include <iostream>
-void fact()
+
+int fact(int n)
 {
-    int rez = 1;
-        for (int i = 1; i <= 10; i++)
-        {
-            rez *= i;
-            std::cout << i<<"\t"<<rez;
-        }
-        
+	int i = 1;
+	int rez = 1;
+	for ( i ; i <= n; i++)
+		rez =rez * i;
+	return rez;
+
 }

@@ -1,11 +1,14 @@
-/*#ifndef h
+#ifndef HED
+#include "fact.h"
+#define HED
 
 
-#include"fact.h"
-int Combinations() {
-	int i;
-	int j;
-	return fact(i) / (fact(j) * fact(i - j));
+int h(int k, int i)
+{
+	int rez;
+	rez = fact(i) / (fact(k) * fact(i - k));
+	return rez;
+}
 
-#endif // !1
-*/
+
+#endif
