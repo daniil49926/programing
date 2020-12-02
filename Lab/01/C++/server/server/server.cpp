@@ -30,7 +30,8 @@ void main()
 	int new_i;
 	new__json.push_back({ {"Temperature", j["hourly"]["temp"]},  {"Weather", j["hourly"]["weather"][0]["description"] } });
 	
-	//
-	//  НЕ ПОНИМАЮ ЧТО ДЕЛАТЬ ДАЛЬШЕ...
-	//
+    new__json.set_content(str, "text/html");
+
+    Serv.listen("localhost", 3000);
+
 }
