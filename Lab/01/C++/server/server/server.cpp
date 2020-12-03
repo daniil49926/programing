@@ -16,22 +16,35 @@ std::string Time_information() {Client Cli("https://worldtimeapi.org"); auto ans
 }
 
 
+void gen_response(const Request& req, Response& res) {
+	// Команда set_content задаёт ответ сервера и тип ответа:
+	// Hello, World! - тело ответа
+	// text/plain - MIME тип ответа (в данном случае обычный текст)
+	res.set_content("Hello, World!", "text/plain");
+}
+//500!!
 void main()
 {
-	json j = json::parse(Wether_information());
-	json t = json::parse(Time_information());
-	json new__json;
+	//json j = json::parse(Wether_information());
+	//json t = json::parse(Time_information());
+	//json new__json;
 	Server Serv;
+	Serv.Get("/", gen_response);
+	Serv.Get("/raw", gen_response);
 	int time = 0;
 	
-	std::ifstream f("Wid.html");
-	std::string str;
-	getline(f, str, '\0');
-	int new_i;
-	new__json.push_back({ {"Temperature", j["hourly"]["temp"]},  {"Weather", j["hourly"]["weather"][0]["description"] } });
+	//std::ifstream f("Wid.html");
+	//std::string str;
+	//getline(f, str, '\0');
+	//int new_i;
+	//new__json.push_back({ {"Temperature", j["hourly"]["temp"]},  {"Weather", j["hourly"]["weather"][0]["description"] } });
 	
-    new__json.set_content(str, "text/html");
+    //new__json.set_content(str, "text/html");
 
-    Serv.listen("localhost", 3000);
+  
+	
+	
+	
+	Serv.listen("localhost", 3000);
 
 }
