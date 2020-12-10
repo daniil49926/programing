@@ -1,50 +1,101 @@
 ﻿#include <iostream>
-#include <cpp_httplib/httplib.h>
-#include <nlohmann/json.hpp>
 #include <string>
 #include <iomanip>
+#include <fstream>
+#include <cpp_httplib/httplib.h>
+#include <nlohmann/json.hpp>
+
 using json = nlohmann::json;
 using namespace httplib;
+json _json;
+int unixtime = 0;
+int cache_time_new = 0;
+int temp = 0;
+int w = 0;
+json _json_cache_weth;
+json _json_time;
 
+void gen_response(const Request& req, Response& rez) {
+		std::string str;
+		std::ifstream l("Wid.html");                                                    //шаблон виджета 
+		Client Cli("http://worldtimeapi.org");											//
+		auto answer = Cli.Get("/api/timezone/Europe/Simferopol");						//
+		if (answer) {																	//
+			if (answer->status == 200) {												//"фильтр" ошибок
+				_json_time = json::parse(answer->body);									//получаем json времени
+				unixtime = _json_time["unixtime"].get<int>();							
+			}																				
+			else {																			
+				std::cout << "Status code: " << answer->status << std::endl;				
+			}
+		}
+		else {
+			auto Error = answer.error();
+			std::cout << "Error code: " << Error << std::endl;
+		}
+		Client cli("http://api.openweathermap.org");
+		auto _answer = cli.Get("/data/2.5/onecall?lat=44.952116&lon=34.102411&lang=ru&units=metric&appid=0083423f4d6d9885477d9ae0b151ab8f");
+		if (_answer) {
+		
+			if (_answer->status == 200) {
+				_json_cache_weth = json::parse(_answer->body);							//получаем json погоды
+				cache_time_new = _json_cache_weth["hourly"][_json_cache_weth["hourly"].size() - 1]["dt"].get<int>(); // достаем время из полученного  json погоды
+			
+				for (int i = _json_cache_weth["hourly"].size(); i > 0; --i) {
+					for (int q = 0; q < _json_cache_weth["hourly"].size(); q++) {
+						if (cache_time_new > unixtime and _json_cache_weth["hourly"][q]["dt"] <= cache_time_new) {   //сравниваем время 
+							temp = _json_cache_weth["hourly"][q]["dt"];												//если устарело или его вовсе нет в кеше кидаем в кеш
+							cache_time_new = temp;
+							w = q;
+						}
+					}
 
-std::string Wether_information() {Client Cli("https://openweathermap.org"); auto answer = Cli.Get("https://api.openweathermap.org/data/2.5/onecall?lat=44.952116&lon=34.102411&lang=ru&units=metric&appid=0083423f4d6d9885477d9ae0b151ab8f");
-	if (answer) return answer->body;
+				}
+
+			}
+			else {
+				std::cout << "Status code: " << _answer->status << std::endl;
+			}
+		}
+		else {
+			auto Error = _answer.error();
+			std::cout << "Error code: " << Error << std::endl;
+		}
+
+		_json["description"] = _json_cache_weth["hourly"][w]["weather"][0]["description"];
+		_json["temp"] = std::to_string(_json_cache_weth["hourly"][w]["temp"].get<int>());
+		std::getline(l, str, '\0');
+		while (str.find("{hourly[i].temp}") != std::string::npos)
+			str.replace(str.find("{hourly[i].temp}"), 16, std::to_string(_json_cache_weth["hourly"][w]["temp"].get<int>()));						//замена значений 
+		str.replace(str.find("{hourly[i].weather[0].description}"), 34, _json_cache_weth["hourly"][w]["weather"][0]["description"]);				//в виджете
+		str.replace(str.find("{hourly[i].weather[0].icon}"), 27, _json_cache_weth["hourly"][w]["weather"][0]["icon"]);
+		rez.set_content(str, "text/html");
+		}
+
+void gen_response_raw(const Request& req, Response& rez) {
+	Client("http://localhost:3000").Get("/");
+	rez.set_content(_json.dump(), "text/json");
 }
-std::string Time_information() {Client Cli("https://worldtimeapi.org"); auto answer = Cli.Get("http://worldtimeapi.org/api/timezone/Europe/Simferopol");
-	if (answer) return answer->body;
 
+int main() {
+	Server svr;
+	svr.Get("/raw", gen_response_raw);
+	svr.Get("/", gen_response);
+	std::cout << "Start server... OK\n";
+	svr.listen("localhost", 3000);
 }
 
 
-void gen_response(const Request& req, Response& res) {
-	// Команда set_content задаёт ответ сервера и тип ответа:
-	// Hello, World! - тело ответа
-	// text/plain - MIME тип ответа (в данном случае обычный текст)
-	res.set_content("Hello, World!", "text/plain");
-}
-//500!!
-void main()
-{
-	//json j = json::parse(Wether_information());
-	//json t = json::parse(Time_information());
-	//json new__json;
-	Server Serv;
-	Serv.Get("/", gen_response);
-	Serv.Get("/raw", gen_response);
-	int time = 0;
-	
-	//std::ifstream f("Wid.html");
-	//std::string str;
-	//getline(f, str, '\0');
-	//int new_i;
-	//new__json.push_back({ {"Temperature", j["hourly"]["temp"]},  {"Weather", j["hourly"]["weather"][0]["description"] } });
-	
-    //new__json.set_content(str, "text/html");
 
-  
-	
-	
-	
-	Serv.listen("localhost", 3000);
 
-}
+
+
+
+
+
+
+
+
+
+
+
