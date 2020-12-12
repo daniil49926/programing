@@ -1,32 +1,40 @@
 ﻿#include <iostream>
-#include <vector>
-#include "28. Факторизация натурального числа.h"
+#include<map>
 
-void factor(int n, int x = 2)
+
+void factor(int n)
 {
-    std::vector<int> vec;
-    if (n == 1) return;
-    if (n % x == 0)
+    std::map  <int, int> in;
+    int x = 2;
+    while (n > 1)
     {
-        std::cout << " * " << x;
-        factor(n / x, x);
-        
+        for (int i = 2; i <= n; i++)
+        {
+            if (!(n % i))
+            {
+                n /= i;
+
+                in[i] = in.count(i) ? in[i] + 1 : 1;
+                break;
+            }
+        }
     }
-    else
-        if (x == 2)
-            factor(n, x + 1);
+    std::cout << "1";
+    for (auto now : in)
+    {
+        if (now.second > 1)
+        {
+            std::cout << "*" << now.first << "^" << now.second;
+        }
         else
-            factor(n, x + 2);
+        {
+            std::cout << "*" << now.first;
+        }
+    }
 }
 int main()
 {
     int n;
-    int i;
     std::cin >> n;
-    std::cout << n<<" = 1";
-    factor(n, 2);
-    std::cin.get(); 
-    std::cin.get();
-   
-    return 0;
+    factor(n);
 }
