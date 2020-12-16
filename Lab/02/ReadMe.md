@@ -49,27 +49,27 @@
 ## Выполнение работы
  Для начала лабораторной работы перешёл на сервис Яндекс.Диалоги: https://dialogs.yandex.ru/ . На главной странице нажал на кнопку Создать навык, после чего попал на _dashboard, где должны находиться все созданные на этом аккаунте навыки. Далее нажал на кнопку Создать диалог, а затем Навык в Алисе вследствие чего попал на окно настроек навыка. Проставил нужные мне настройки и активировал WebHook URL для бэкэнда, используя ngrok, затем сохранил и опубликовал навык.
 
-<p align="center"> <img width="730" height="340" src="C:\Users\Даниил\Desktop\new_programing\programing\Lab\02\pic\1.png".png</p>
+<p align="center"> <img width="730" height="340" src="/pic/1.png".png</p>
 <p align="center"> Рис. 1 - Страница настроек навыка Алисы </p> </br>
 
 ### Корзина и Помощь
 Прочитав материал по данной теме приступил к написанию фунционала корзины и помощи.Функция "Очистить корзину" удаляет все данные о покупках в данной сессии, команда "Добавить в корзину" добавляет в корзину товар и его цену, "Удалить из корзины" удаляет введенный элемент из данной сессии, если такой имеется, "Что в корзине" выводит что в корзине на данный момент, "Сумма" подсчитывает и выводит суммарную стоимость всех товаров в этой сессии (Рис. 2).
 
-<p align="center"> <img width="270" height="330" src="C:\Users\Даниил\Desktop\new_programing\programing\Lab\02\pic\e.jpg" </p>
+<p align="center"> <img width="270" height="330" src="./pic/e.jpg" </p>
 <p align="center"> Рис. 2 - Работа корзины. </p> </br>
 
  При вводе или выборе команды "помощь" основной режим Алисы переключается на режим помощи и теперь при вводе команд мы будем получать справку о данной команде(Рис. 3-5).
  
- <p align="center"> <img width="275" height="500" src="C:\Users\Даниил\Desktop\new_programing\programing\Lab\02\pic\b.jpg" </p>
+ <p align="center"> <img width="275" height="500" src="./pic/b.jpg" </p>
  <p align="center"> Рис. 2 - Работа помощи. </p> </br>
- <p align="center"> <img width="275" height="500" src="C:\Users\Даниил\Desktop\new_programing\programing\Lab\02\pic\c.jpg" </p>
+ <p align="center"> <img width="275" height="500" src="./pic/c.jpg" </p>
 <p align="center"> Рис. 3 - Работа помощи. </p> </br>
-<p align="center"> <img width="275" height="500" src="C:\Users\Даниил\Desktop\new_programing\programing\Lab\02\pic\d.jpg" </p>
+<p align="center"> <img width="275" height="500" src="./pic/d.jpg" </p>
 <p align="center"> Рис. 4 - Работа помощи. </p> </br>
 
 Для взаимодействия с подчинёнными сервисами будем использовать Webhook-и. Для этого понадобится способ их регистрации и удаления во время работы сервера. Поэтому был сделан html-шаблон, отвечающий за добавление и удаление Webhook-ов, для их массовой рассылки (Рис. 5)
 
-<p align="center"> <img width="700" height="150" src="C:\Users\Даниил\Desktop\new_programing\programing\Lab\02\pic\a1.png"</p>
+<p align="center"> <img width="700" height="150" src="./pic/a1.png"</p>
 <p align="center"> Рис. 2 - Зарегистрированный Webhook. </p> </br>
 
 
