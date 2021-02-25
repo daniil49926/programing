@@ -37,8 +37,8 @@ string Alice_talk::Response(string new_j, json param, json buttons, bool end_ses
 	j["response"]["end_session"] = end_session;
 	j["version"] = "1.0";
 	j["session_state"] = param;
-	std::stringstream new_j2;
-	new_j2 << std::setw(2) << j << std::endl;
+	std::stringstream new_j2;        //потоковые данные
+	new_j2 << std::setw(2) << j << std::endl;   //установка ширины поля
 	return new_j2.str();
 }
 
@@ -72,7 +72,7 @@ string Alice_talk::Basket(json param) {
 		temp = temp + u8" тугриков\n";
 		rez += temp;
 	}
-	rez.pop_back();
+	rez.pop_back();       //удаляет последний элемент из реза
 	return rez;
 }
 
@@ -214,7 +214,7 @@ string Alice_talk::Get_Response(string body) {
 	try {
 		mode = state["mode"];
 	}
-	catch (...) {
+	catch (...) {        //для обработки исключений
 		mode = u8"main";
 	}
 
@@ -250,7 +250,7 @@ json Alice_talk::Buttons_Help(json param) {
 void Alice_talk::EraseFromCart(json& param, string name) {
 	for (int i = 0; i < param["check"].size(); i++) {
 		if (param["check"][i]["item"] == name) {
-			param["check"].erase(i);
+			param["check"].erase(i);     //удаляет все символы кроме i символов
 			return;
 		}
 	}
@@ -265,9 +265,9 @@ string replace_str(string str, string source, string nw) {
 }
 
 string readFile(string filename){
-	std::ifstream is(filename);
+	std::ifstream is(filename);     
 	std::stringstream ss;
-	ss << is.rdbuf();
+	ss << is.rdbuf(); //позволяет нескольким объектам потоков данных читать из одного входного канала или записывать в один выходной канал
 	return ss.str();
 }
 
@@ -285,7 +285,7 @@ void process_post(const Request& req, Response& res) {
 		string val = req.get_param_value("set");
 		webH.Push(val);
 	}
-	res.set_redirect("#");
+	res.set_redirect("#"); //перенаправление с запрашиваемого URL адреса к URL адресу назначения
 }
 
 void response(const Request& req, Response& res) {
