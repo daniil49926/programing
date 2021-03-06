@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "35. Структура — массив целых чисел", "35. Структура — массив целых чисел\35. Структура — массив целых чисел.vcxproj", "{75EDD929-9D0D-431F-9EF6-8D8849DAF119}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Debug|x64.ActiveCfg = Debug|x64
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Debug|x64.Build.0 = Debug|x64
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Debug|x86.ActiveCfg = Debug|Win32
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Debug|x86.Build.0 = Debug|Win32
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Release|x64.ActiveCfg = Release|x64
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Release|x64.Build.0 = Release|x64
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Release|x86.ActiveCfg = Release|Win32
+		{75EDD929-9D0D-431F-9EF6-8D8849DAF119}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {829CA50C-36B3-4F9D-8E5B-4D454642086A}
+	EndGlobalSection
+EndGlobal
